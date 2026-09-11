@@ -877,3 +877,7 @@ img {
         font-size: 18px;
     }
 }
+
+/* CMS article featured images */
+.article-featured-image { width:100%; aspect-ratio:16/9; object-fit:cover; margin:28px 0; border:1px solid #111; }
+@media (max-width:900px){ .article-layout{grid-template-columns:1fr;gap:32px}.article-sidebar{position:static;border-left:0;padding-left:0;border-top:1px solid #111;padding-top:24px} }

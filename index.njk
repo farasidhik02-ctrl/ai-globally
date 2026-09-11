@@ -1,0 +1,30 @@
+---
+layout: layouts/base.njk
+seo_title: AI Globally | AI News, Insights and Explainers
+---
+<div class="container discovery-row">
+  <label class="search-box"><span class="search-mark">⌕</span><input id="siteSearch" placeholder="Search articles, topics, companies..." aria-label="Search articles"></label>
+  <nav class="category-box" aria-label="Topics"><a href="#" class="active">ALL</a><a href="#">INNOVATION</a><a href="#">POLICY</a><a href="#">BUSINESS</a><a href="#">INFRASTRUCTURE</a><a href="#">PEOPLE</a><a href="#">MORE</a></nav>
+</div>
+<main class="container">
+{% set articles = collections.articles | reverse %}
+<section class="main-grid">
+<div class="popular"><h1 class="section-title">POPULAR NEWS</h1>
+{% for story in articles %}{% if story.data.featured and loop.index <= 6 %}
+<article class="pop-item searchable{% if loop.index % 2 == 0 %} reverse{% endif %}">
+<a class="story-media" href="{{ story.url }}">{% if story.data.image %}<img src="{{ story.data.image }}" alt="{{ story.data.image_alt }}">{% else %}<img src="/assets/agents.svg" alt="Abstract technology illustration">{% endif %}</a>
+<div class="story-copy"><h2 class="story-title"><a href="{{ story.url }}">{{ story.data.title }}</a></h2><div class="byline"><div class="avatar">FS</div><div><strong>{{ story.data.author }}</strong><span>{{ story.data.type }} · {{ story.data.date | shortDate }}</span></div></div></div>
+</article>{% endif %}{% endfor %}
+</div>
+<aside class="latest" id="latest"><h2 class="section-title">LATEST NEWS</h2><div class="latest-list">
+{% for story in articles %}{% if loop.index <= 5 %}<a class="latest-row searchable" href="{{ story.url }}"><span class="latest-time">{{ story.data.date | shortDate }}</span><span class="latest-head">{{ story.data.title }}</span><span class="latest-arrow">→</span></a>{% endif %}{% endfor %}
+</div></aside></section>
+<section class="lower-grid">
+<div class="insights" id="insights"><h2 class="sub-title">INSIGHTS</h2><div class="insight-grid">
+{% for story in articles %}{% if story.data.type == 'Insight' %}<a class="card searchable" href="{{ story.url }}">{% if story.data.image %}<img src="{{ story.data.image }}" alt="{{ story.data.image_alt }}" loading="lazy">{% else %}<img src="/assets/architecture.svg" alt="" loading="lazy">{% endif %}<h3 class="card-title">{{ story.data.title }}</h3><div class="card-meta">{{ story.data.date | readableDate }}</div></a>{% endif %}{% endfor %}
+</div></div>
+<div class="explainers" id="explainers"><h2 class="sub-title">EXPLAINERS</h2>
+{% for story in articles %}{% if story.data.type == 'Explainer' %}<a class="explain-item searchable" href="{{ story.url }}">{% if story.data.image %}<img src="{{ story.data.image }}" alt="{{ story.data.image_alt }}" loading="lazy">{% else %}<img src="/assets/waves.svg" alt="" loading="lazy">{% endif %}<div class="explain-copy"><h3>{{ story.data.title }}</h3><p>{{ story.data.meta_description }}</p><div class="card-meta">{{ story.data.date | readableDate }}</div></div></a>{% endif %}{% endfor %}
+</div></section></main>
+<footer class="container site-footer"><div><div class="footer-brand">AI GLOBALLY</div><div class="tagline">News, analysis and context for a more AI-driven world.</div></div><div class="footer-links"><a href="/about.html">About</a><a href="#">Privacy</a><a href="#">Terms</a><a href="#">Contact</a><span>© 2026 AI Globally</span></div></footer>
+<script>const input=document.getElementById('siteSearch');input?.addEventListener('input',()=>{const q=input.value.toLowerCase().trim();document.querySelectorAll('.searchable').forEach(el=>{el.style.opacity=!q||el.innerText.toLowerCase().includes(q)?'1':'.18';});});</script>

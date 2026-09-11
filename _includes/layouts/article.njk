@@ -1,0 +1,30 @@
+---
+layout: layouts/base.njk
+---
+<main class="article-page container">
+  <a href="/" class="article-back">← BACK TO NEWS</a>
+  <div class="article-layout">
+    <article class="article-shell">
+      <div class="kicker">{{ type }}</div>
+      <h1>{{ title }}</h1>
+      <div class="article-meta">By {{ author }} · {{ date | readableDate }} · AI Globally</div>
+      {% if image %}<img class="article-featured-image" src="{{ image }}" alt="{{ image_alt }}" width="1200" height="675">{% endif %}
+      {% if key_point_1 or key_point_2 or key_point_3 %}
+      <div class="keypoints"><h2>Key Points</h2><ul>
+        {% if key_point_1 %}<li>{{ key_point_1 }}</li>{% endif %}
+        {% if key_point_2 %}<li>{{ key_point_2 }}</li>{% endif %}
+        {% if key_point_3 %}<li>{{ key_point_3 }}</li>{% endif %}
+      </ul></div>{% endif %}
+      {{ content | safe }}
+    </article>
+    <aside class="article-sidebar">
+      <h2 class="sidebar-title">LATEST STORIES</h2>
+      <div class="sidebar-list">
+      {% set recent = collections.articles | reverse %}
+      {% for story in recent %}{% if story.url != page.url and loop.index <= 6 %}
+        <a href="{{ story.url }}" class="sidebar-story"><span class="sidebar-number">0{{ loop.index }}</span><span class="sidebar-headline">{{ story.data.title }}</span></a>
+      {% endif %}{% endfor %}
+      </div>
+    </aside>
+  </div>
+</main>
