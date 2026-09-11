@@ -1,5 +1,5 @@
 ---
-title: TEST ARTICLE
+title: CMS TEST ARTICLE
 type: News
 category: Policy
 author: Fara Sidhik
