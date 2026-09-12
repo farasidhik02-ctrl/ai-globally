@@ -9,7 +9,7 @@ tags:
   - Anthropic
   - AI Safety
   - AI Regulation
-  - OpenAI
+  - "OpenAI "
 date: 2026-09-12
 time: 22:30
 image: /assets/images/chatgpt-image-sep-12-2026-103428-pm.webp
