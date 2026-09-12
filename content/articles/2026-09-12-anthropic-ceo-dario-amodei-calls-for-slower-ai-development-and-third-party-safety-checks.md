@@ -9,7 +9,6 @@ tags:
   - Anthropic
   - AI Safety
   - AI Regulation
-  - Frontier AI
   - OpenAI
 date: 2026-09-12
 time: 22:30
