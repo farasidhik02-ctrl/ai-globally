@@ -83,9 +83,15 @@ content:
         type: string
 
       - name: featured_home
-        label: Show in Popular News
-        type: boolean
-        default: false
+  label: Show in Popular News
+  type: select
+  required: true
+  options:
+    values:
+      - value: true
+        label: Yes
+      - value: false
+        label: No
 
       - name: key_point_1
         label: Key Point 1
