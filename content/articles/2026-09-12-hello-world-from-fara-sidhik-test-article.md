@@ -6,6 +6,7 @@ author: Fara Sidhik
 date: 2026-09-12
 image: /assets/images/chatgpt-image-sep-11-2026-061828-pm-3.webp
 image_alt: HELLO WORRLD
+featured_home: true
 key_point_1: HII
 key_point_2: I AM
 key_point_3: FARA SIDHIK
