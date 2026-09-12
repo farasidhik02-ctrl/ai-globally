@@ -3,7 +3,11 @@ media:
     label: Article Images
     input: assets/images
     output: /assets/images
-    extensions: [webp, jpg, jpeg, png]
+    extensions:
+      - webp
+      - jpg
+      - jpeg
+      - png
     rename: safe
 
 content:
@@ -12,35 +16,102 @@ content:
     type: collection
     path: content/articles
     format: yaml-frontmatter
+
     view:
-      fields: [title, type, category, author, date]
       primary: title
+      fields:
+        - title
+        - type
+        - category
+        - date
+        - author
       sort: date
       order: desc
+
     fields:
-      - { name: title, label: Headline, type: string, required: true }
+      - name: title
+        label: Headline
+        type: string
+        required: true
+
       - name: type
         label: Content Type
         type: select
         required: true
-        options: { values: [News, Insight, Explainer] }
+        options:
+          values:
+            - News
+            - Insight
+            - Explainer
+
       - name: category
         label: Category
         type: select
         required: true
-        options: { values: [Innovation, Policy, Business, Infrastructure, People] }
-      - { name: author, label: Author, type: string, required: true, default: Fara Sidhik }
-      - { name: date, label: Publish Date, type: date, required: true }
-      - { name: image, label: Featured Image, type: image, options: { media: article_images } }
-      - { name: image_alt, label: Image Alt Text, type: string }
-      - { name: key_point_1, label: Key Point 1, type: string }
-      - { name: key_point_2, label: Key Point 2, type: string }
-      - { name: key_point_3, label: Key Point 3, type: string }
-      - { name: featured, label: Show in Popular News, type: boolean, default: false }
-      - { name: seo_title, label: SEO Title, type: string }
-      - { name: meta_description, label: Meta Description, type: text }
+        options:
+          values:
+            - Innovation
+            - Policy
+            - Business
+            - Infrastructure
+            - People
+
+      - name: author
+        label: Author
+        type: string
+        default: Fara Sidhik
+        required: true
+
+      - name: date
+        label: Publish Date
+        type: date
+        required: true
+
+      - name: time
+        label: Publish Time
+        type: string
+        description: Use 24-hour format, for example 14:30
+
+      - name: image
+        label: Featured Image
+        type: image
+        options:
+          media: article_images
+
+      - name: image_alt
+        label: Image Alt Text
+        type: string
+
+      - name: featured_home
+        label: Show in Popular News
+        type: boolean
+        default: false
+
+      - name: key_point_1
+        label: Key Point 1
+        type: string
+
+      - name: key_point_2
+        label: Key Point 2
+        type: string
+
+      - name: key_point_3
+        label: Key Point 3
+        type: string
+
+      - name: seo_title
+        label: SEO Title
+        type: string
+
+      - name: meta_description
+        label: Meta Description
+        type: text
+
       - name: body
         label: Article Body
         type: rich-text
         required: true
-        options: { format: markdown, media: article_images, switcher: true }
+        options:
+          format: markdown
+          media: article_images
+          switcher: true

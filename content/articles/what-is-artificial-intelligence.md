@@ -1,22 +1,18 @@
 ---
-layout: layouts/article.njk
-title: What Is Artificial Intelligence? How AI Actually Works
-type: Explainer
-category: Innovation
-author: Fara Sidhik
-date: '2026-09-08'
-image: ''
-image_alt: ''
-key_point_1: AI is the broad field; machine learning is one approach within it.
-key_point_2: Training builds models; inference uses them.
-key_point_3: Generative AI creates content, while agents can take actions.
-seo_title: What Is Artificial Intelligence? How AI Actually Works | AI Globally
-meta_description: A practical guide to AI, machine learning, generative AI, LLMs,
-  agents and AGI.
-permalink: articles/what-is-artificial-intelligence.html
-tags:
-- articles
-featured: false
+title: "What Is Artificial Intelligence? How AI Actually Works"
+type: "Explainer"
+category: "Innovation"
+author: "Fara Sidhik"
+date: "2026-09-08"
+time: "08:47"
+image: "/assets/waves.svg"
+image_alt: ""
+featured_home: false
+key_point_1: "AI is the broad field; machine learning is one approach within it."
+key_point_2: "Training builds models; inference uses them."
+key_point_3: "Generative AI creates content, while agents can take actions."
+seo_title: "What Is Artificial Intelligence? How AI Actually Works | AI Globally"
+meta_description: "A practical guide to AI, machine learning, generative AI, LLMs, agents and AGI."
 ---
 
 ## What is artificial intelligence?

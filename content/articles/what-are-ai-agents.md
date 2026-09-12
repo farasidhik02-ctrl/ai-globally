@@ -1,21 +1,18 @@
 ---
-layout: layouts/article.njk
-title: What Are AI Agents? How They Work and Why They Matter
-type: Explainer
-category: Innovation
-author: Fara Sidhik
-date: '2026-09-05'
-image: ''
-image_alt: ''
-key_point_1: AI agents can act, not just answer.
-key_point_2: They combine models, tools and instructions.
-key_point_3: More autonomy brings reliability and security risks.
-seo_title: What Are AI Agents? How They Work and Why They Matter | AI Globally
-meta_description: How AI agents differ from chatbots and automation.
-permalink: articles/what-are-ai-agents.html
-tags:
-- articles
-featured: false
+title: "What Are AI Agents? How They Work and Why They Matter"
+type: "Explainer"
+category: "Innovation"
+author: "Fara Sidhik"
+date: "2026-09-05"
+time: "09:58"
+image: "/assets/steps.svg"
+image_alt: ""
+featured_home: false
+key_point_1: "AI agents can act, not just answer."
+key_point_2: "They combine models, tools and instructions."
+key_point_3: "More autonomy brings reliability and security risks."
+seo_title: "What Are AI Agents? How They Work and Why They Matter | AI Globally"
+meta_description: "How AI agents differ from chatbots and automation."
 ---
 
 ## What is an AI agent?

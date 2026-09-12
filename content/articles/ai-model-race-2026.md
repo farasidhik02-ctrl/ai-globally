@@ -1,22 +1,18 @@
 ---
-layout: layouts/article.njk
-title: The AI Model Race in 2026
-type: Insight
-category: Innovation
-author: Fara Sidhik
-date: '2026-09-10'
-image: ''
-image_alt: ''
-key_point_1: There is no single model race anymore.
-key_point_2: Capability, cost, agents and distribution all matter.
-key_point_3: Open and closed model strategies are diverging.
-seo_title: The AI Model Race in 2026 | AI Globally
-meta_description: Why competition between major AI labs is moving beyond benchmark
-  scores.
-permalink: articles/ai-model-race-2026.html
-tags:
-- articles
-featured: true
+title: "The AI Model Race in 2026"
+type: "Insight"
+category: "Innovation"
+author: "Fara Sidhik"
+date: "2026-09-10"
+time: "08:20"
+image: "/assets/globe.svg"
+image_alt: ""
+featured_home: true
+key_point_1: "There is no single model race anymore."
+key_point_2: "Capability, cost, agents and distribution all matter."
+key_point_3: "Open and closed model strategies are diverging."
+seo_title: "The AI Model Race in 2026 | AI Globally"
+meta_description: "Why competition between major AI labs is moving beyond benchmark scores."
 ---
 
 ## There is no single AI model race anymore

@@ -1,21 +1,18 @@
 ---
-layout: layouts/article.njk
-title: The Biggest AI Trends Shaping 2026
-type: Insight
-category: Business
-author: Fara Sidhik
-date: '2026-09-10'
-image: ''
-image_alt: ''
-key_point_1: AI is shifting from chatbots to agents.
-key_point_2: Cost, infrastructure and energy are becoming constraints.
-key_point_3: Regulation is moving from proposals to implementation.
-seo_title: The Biggest AI Trends Shaping 2026 | AI Globally
-meta_description: The trends defining the next phase of AI.
-permalink: articles/ai-trends-2026.html
-tags:
-- articles
-featured: false
+title: "The Biggest AI Trends Shaping 2026"
+type: "Insight"
+category: "Innovation"
+author: "Fara Sidhik"
+date: "2026-09-10"
+time: "10:41"
+image: "/assets/city.svg"
+image_alt: ""
+featured_home: false
+key_point_1: "AI is shifting from chatbots to agents."
+key_point_2: "Cost, infrastructure and energy are becoming constraints."
+key_point_3: "Regulation is moving from proposals to implementation."
+seo_title: "The Biggest AI Trends Shaping 2026 | AI Globally"
+meta_description: "The trends defining the next phase of AI."
 ---
 
 ## AI agents are moving into work

@@ -1,23 +1,18 @@
 ---
-layout: layouts/article.njk
-title: 'AI Training vs Inference: Where the AI Industry Is Competing Now'
-type: Insight
-category: Infrastructure
-author: Fara Sidhik
-date: '2026-09-10'
-image: ''
-image_alt: ''
-key_point_1: Training builds models; inference runs them.
-key_point_2: Inference demand grows every time AI is used.
-key_point_3: Cost per useful task is becoming a major metric.
-seo_title: 'AI Training vs Inference: Where the AI Industry Is Competing Now | AI
-  Globally'
-meta_description: Why inference cost, agents and specialised chips are changing AI
-  economics.
-permalink: articles/ai-training-vs-inference.html
-tags:
-- articles
-featured: false
+title: "AI Training vs Inference: Where the AI Industry Is Competing Now"
+type: "Insight"
+category: "Infrastructure"
+author: "Fara Sidhik"
+date: "2026-09-10"
+time: "09:30"
+image: "/assets/servers.svg"
+image_alt: ""
+featured_home: false
+key_point_1: "Training builds models; inference runs them."
+key_point_2: "Inference demand grows every time AI is used."
+key_point_3: "Cost per useful task is becoming a major metric."
+seo_title: "AI Training vs Inference: Where the AI Industry Is Competing Now | AI Globally"
+meta_description: "Why inference cost, agents and specialised chips are changing AI economics."
 ---
 
 ## Training vs inference

@@ -1,7 +1,10 @@
 {
   "name": "ai-globally",
-  "version": "1.0.0",
   "private": true,
-  "scripts": {"start": "eleventy --serve", "build": "eleventy"},
-  "devDependencies": {"@11ty/eleventy": "^3.1.2"}
+  "version": "1.0.0",
+  "scripts": {
+    "build": "node build.js",
+    "serve": "npx serve dist"
+  },
+  "dependencies": {}
 }
