@@ -572,28 +572,15 @@ img {
 /* KEY POINTS */
 
 .keypoints {
-    margin:
-        28px
-        0;
-
-    padding:
-        22px
-        24px;
-
-    border:
-        1px
-        solid
-        #111;
+    margin: 28px 0 34px;
+    padding: 0;
+    border: 0;
 }
 
 
 .keypoints h2 {
-    font-size: 16px;
-
-    margin:
-        0
-        0
-        10px;
+    font-size: 20px;
+    margin: 0 0 12px;
 }
 
 
@@ -622,7 +609,7 @@ img {
         Georgia,
         serif;
 
-    font-size: 19px;
+    font-size: 17px;
 
     line-height: 1.65;
 
