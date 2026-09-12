@@ -176,6 +176,7 @@ function parseFrontmatter(raw) {
 
     const data = {};
 
+    let currentKey = null;
     let currentList = null;
 
     for (const line of fm) {
@@ -184,6 +185,7 @@ function parseFrontmatter(raw) {
             continue;
         }
 
+        /* YAML LIST ITEM */
         const listItem = line.match(
             /^\s+-\s+(.*)$/
         );
@@ -197,26 +199,56 @@ function parseFrontmatter(raw) {
             continue;
         }
 
+
+        /* NORMAL key: value */
         const keyMatch = line.match(
-            /^([^:]+):\s*(.*)$/
+            /^([^:\s][^:]*):\s*(.*)$/
         );
 
-        if (!keyMatch) {
+        if (keyMatch) {
+
+            const key =
+                keyMatch[1].trim();
+
+            const value =
+                keyMatch[2].trim();
+
+            currentKey = key;
+
+            if (value === '') {
+
+                data[key] = [];
+                currentList = key;
+
+            } else {
+
+                data[key] =
+                    parseScalar(value);
+
+                currentList = null;
+
+            }
+
             continue;
         }
 
-        const key = keyMatch[1].trim();
-        const value = keyMatch[2].trim();
 
-        if (value === '') {
+        /* CONTINUATION OF A LONG YAML VALUE */
+        const continuation = line.match(
+            /^\s+(.+)$/
+        );
 
-            data[key] = [];
-            currentList = key;
+        if (
+            continuation &&
+            currentKey &&
+            !currentList
+        ) {
 
-        } else {
+            const extra =
+                continuation[1].trim();
 
-            data[key] = parseScalar(value);
-            currentList = null;
+            data[currentKey] =
+                `${data[currentKey]} ${extra}`.trim();
 
         }
     }
@@ -224,6 +256,7 @@ function parseFrontmatter(raw) {
 
     return {
         data,
+
         content: raw
             .slice(end + 4)
             .replace(/^\r?\n/, '')
@@ -721,10 +754,12 @@ function tagsHtml(tags) {
 function renderHome(articles) {
 
     const popular = articles
-        .filter(
-            a => a.featured_home === true
-        )
-        .slice(0, 2);
+    .filter(
+        a =>
+            a.featured_home === true ||
+            String(a.featured_home).toLowerCase() === 'true'
+    )
+    .slice(0, 2);
 
 
     const latest = articles
