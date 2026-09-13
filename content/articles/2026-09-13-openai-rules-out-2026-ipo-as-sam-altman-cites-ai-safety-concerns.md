@@ -50,9 +50,9 @@ Ruling out 2026 does not mean OpenAI has confirmed an IPO for 2027.
 
 When Altman was asked whether the company was moving from a 2026 listing to 2027, he ruled out this year without committing to the next one. OpenAI has not announced when it will go public.
 
-```
-Sources
-Reuters, September 13, 2026: “OpenAI's Altman won't do IPO this year, calls AI extinction risk 'unacceptable'” 
-Forbes, September 12, 2026: “OpenAI Isn’t Going Public This Year, Sam Altman Says” 
-```
+
+
+- Sources
+Reuters, September 13, 2026: “[OpenAI's Altman won't do IPO this year, calls AI extinction risk 'unacceptable](https://www.reuters.com/legal/litigation/openai-ipo-will-not-happen-2026-amid-ai-safety-fears-altman-says-2026-09-12/)'” 
+Forbes, September 12, 2026: “[OpenAI Isn’t Going Public This Year, Sam Altman Says](https://www.forbes.com/sites/maryroeloffs/2026/09/12/openai-isnt-going-public-this-year-sam-altman-says/)” 
 
