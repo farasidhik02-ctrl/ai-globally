@@ -5,7 +5,6 @@ category: Policy
 author: Fara Sidhik
 date: 2026-09-11
 time: 11:02
-image: /assets/agents.svg
 featured_home: false
 key_point_1: Altman reportedly told staff OpenAI could pace advanced AI
   development alongside other frontier labs.

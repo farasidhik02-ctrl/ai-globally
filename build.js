@@ -4,7 +4,7 @@ const path = require('path');
 const ROOT = __dirname;
 const OUT = path.join(ROOT, 'dist');
 const CONTENT = path.join(ROOT, 'content', 'articles');
-const DOMAIN = 'https://readaiglobally.com';
+const DOMAIN = 'https://ai-globally.pages.dev';
 
 
 /* =========================
@@ -512,6 +512,10 @@ function readArticles() {
    HEADER
 ========================= */
 
+/* =========================
+   HEADER
+========================= */
+
 const header = () => `
 <header class="site-header">
 
@@ -520,15 +524,15 @@ const header = () => `
         <div>
 
             <a
-    href="/"
-    class="brand brand-logo"
-    aria-label="AI Globally homepage"
->
-    <img
-        src="/assets/ai-globally-logo.png"
-        alt="AI Globally"
-    >
-</a>
+                href="/"
+                class="brand brand-logo"
+                aria-label="AI Globally homepage"
+            >
+                <img
+                    src="/assets/ai-globally-logo.png"
+                    alt="AI Globally"
+                >
+            </a>
 
         </div>
 
@@ -558,17 +562,96 @@ const header = () => `
                 ⌕
             </span>
 
-            <span class="mobile-menu">
+            <button
+                class="mobile-menu"
+                id="mobileMenuButton"
+                type="button"
+                aria-label="Open navigation menu"
+                aria-expanded="false"
+                aria-controls="mobileMenuPanel"
+            >
                 ☰
-            </span>
+            </button>
 
         </nav>
 
     </div>
 
-</header>
-`;
 
+    <nav
+        class="mobile-menu-panel"
+        id="mobileMenuPanel"
+        aria-label="Mobile navigation"
+        hidden
+    >
+
+        <a href="/news/">
+            NEWS
+        </a>
+
+        <a href="/insights/">
+            INSIGHTS
+        </a>
+
+        <a href="/explainers/">
+            EXPLAINERS
+        </a>
+
+        <a href="/about.html">
+            ABOUT
+        </a>
+
+    </nav>
+
+</header>
+
+
+<script>
+document.addEventListener(
+    'DOMContentLoaded',
+    () => {
+
+        const button =
+            document.getElementById(
+                'mobileMenuButton'
+            );
+
+        const panel =
+            document.getElementById(
+                'mobileMenuPanel'
+            );
+
+        if (!button || !panel) {
+            return;
+        }
+
+        button.addEventListener(
+            'click',
+            () => {
+
+                const isOpen =
+                    button.getAttribute(
+                        'aria-expanded'
+                    ) === 'true';
+
+                button.setAttribute(
+                    'aria-expanded',
+                    String(!isOpen)
+                );
+
+                panel.hidden = isOpen;
+
+                button.textContent =
+                    isOpen
+                        ? '☰'
+                        : '×';
+            }
+        );
+
+    }
+);
+</script>
+`;
 
 /* =========================
    PAGE HEAD
@@ -580,8 +663,11 @@ function pageHead(
     canonical,
     type = 'website',
     schema = '',
-    depth = ''
-) {
+    depth = '',
+    image = ''
+)
+
+{
 
     return `
 <!doctype html>
@@ -615,15 +701,15 @@ function pageHead(
     >
 
     <link
-    rel="icon"
-    type="image/png"
-    href="/assets/flavicon.png"
->
+        rel="icon"
+        type="image/png"
+        href="/assets/flavicon.png"
+    >
 
-<link
-    rel="shortcut icon"
-    href="/assets/flavicon.png"
->
+    <link
+        rel="shortcut icon"
+        href="/assets/flavicon.png"
+    >
 
     <meta
         property="og:title"
@@ -646,6 +732,32 @@ function pageHead(
     >
 
     ${
+    image
+        ? `
+            <meta
+                property="og:image"
+                content="${image}"
+            >
+
+            <meta
+                name="twitter:card"
+                content="summary_large_image"
+            >
+
+            <meta
+                name="twitter:image"
+                content="${image}"
+            >
+        `
+        : `
+            <meta
+                name="twitter:card"
+                content="summary"
+            >
+        `
+}
+
+    ${
         schema
             ? `<script type="application/ld+json">${schema}</script>`
             : ''
@@ -656,7 +768,6 @@ function pageHead(
 <body>
 `;
 }
-
 
 /* =========================
    AUTHOR
@@ -796,13 +907,13 @@ function renderHome(articles) {
         href="${articleUrl(a)}"
     >
 
-        <img
-            src="${a.image || '/assets/agents.svg'}"
-            alt="${esc(
-                a.image_alt ||
-                'Abstract technology illustration'
-            )}"
-        >
+       <img
+    src="${a.home_image || '/assets/agents.svg'}"
+    alt="${esc(
+        a.home_image_alt ||
+        'AI Globally article illustration'
+    )}"
+>
 
     </a>
 
@@ -964,20 +1075,29 @@ function renderHome(articles) {
 
 
     const schema = JSON.stringify(
-        {
-            '@context':
-                'https://schema.org',
+    {
+        '@context':
+            'https://schema.org',
 
+        '@type':
+            'NewsMediaOrganization',
+
+        name:
+            'AI Globally',
+
+        url:
+            DOMAIN + '/',
+
+        logo: {
             '@type':
-                'NewsMediaOrganization',
-
-            name:
-                'AI Globally',
+                'ImageObject',
 
             url:
-                DOMAIN + '/'
+                DOMAIN +
+                '/assets/ai-globally-logo.png'
         }
-    );
+    }
+);
 
 
     return `
@@ -987,7 +1107,8 @@ ${pageHead(
     DOMAIN + '/',
     'website',
     schema,
-    ''
+    '',
+    DOMAIN + '/assets/ai-globally-logo.png'
 )}
 
 ${header('')}
@@ -1042,10 +1163,6 @@ ${header('')}
             PEOPLE
         </a>
 
-        <a href="#" class="more-link">
-            MORE
-        </a>
-
     </nav>
 
 </div>
@@ -1053,17 +1170,21 @@ ${header('')}
 
 <main class="container">
 
+    <h1 class="homepage-title">
+        AI news, insights and explainers from around the world
+    </h1>
+
 
     <section class="main-grid">
 
 
         <div class="popular">
 
-            <h1 class="section-title">
+            <h2 class="section-title">
                 <span>
                     POPULAR NEWS
                 </span>
-            </h1>
+            </h2>
 
             ${popularHtml}
 
@@ -1155,15 +1276,15 @@ ${header('')}
             About
         </a>
 
-        <a href="#">
-            Privacy
-        </a>
+        <a href="/privacy.html">
+    Privacy
+</a>
 
-        <a href="#">
-            Terms
-        </a>
+        <a href="/terms.html">
+    Terms
+</a>
 
-        <a href="#">
+        <a href="/contact.html">
             Contact
         </a>
 
@@ -1184,31 +1305,23 @@ const input =
     );
 
 input?.addEventListener(
-    'input',
-    () => {
+    'keydown',
+    event => {
+
+        if (event.key !== 'Enter') {
+            return;
+        }
 
         const q =
-            input.value
-                .toLowerCase()
-                .trim();
+            input.value.trim();
 
-        document
-            .querySelectorAll(
-                '.searchable'
-            )
-            .forEach(
-                el => {
+        if (!q) {
+            return;
+        }
 
-                    el.style.opacity =
-                        !q ||
-                        el.innerText
-                            .toLowerCase()
-                            .includes(q)
-                            ? '1'
-                            : '.18';
-
-                }
-            );
+        window.location.href =
+            '/search/?q=' +
+            encodeURIComponent(q);
 
     }
 );
@@ -1308,57 +1421,77 @@ function renderArticle(
         .join('');
 
 
-    const schema = JSON.stringify(
-        {
-            '@context':
-                'https://schema.org',
+    const schemaData = {
+    '@context':
+        'https://schema.org',
 
+    '@type':
+        news
+            ? 'NewsArticle'
+            : 'Article',
+
+    headline:
+        a.title,
+
+    description:
+        a.meta_description || '',
+
+    datePublished:
+        a.date,
+
+    mainEntityOfPage: {
+        '@type':
+            'WebPage',
+
+        '@id':
+            `${DOMAIN}${articleUrl(a)}`
+    },
+
+    author: {
+        '@type':
+            'Person',
+
+        name:
+            a.author ||
+            'Fara Sidhik'
+    },
+
+    publisher: {
+        '@type':
+            'NewsMediaOrganization',
+
+        name:
+            'AI Globally',
+
+        url:
+            DOMAIN + '/',
+
+        logo: {
             '@type':
-                news
-                    ? 'NewsArticle'
-                    : 'Article',
+                'ImageObject',
 
-            headline:
-                a.title,
-
-            datePublished:
-                a.date,
-
-            author: {
-                '@type':
-                    'Person',
-
-                name:
-                    a.author ||
-                    'Fara Sidhik'
-            },
-
-            publisher: {
-                '@type':
-                    'Organization',
-
-                name:
-                    'AI Globally'
-            }
+            url:
+                DOMAIN +
+                '/assets/ai-globally-logo.png'
         }
+    }
+};
+
+
+if (a.image) {
+
+    schemaData.image =
+        DOMAIN + a.image;
+
+}
+
+
+const schema =
+    JSON.stringify(
+        schemaData
     );
 
 
-    const img = a.image
-        ? `
-
-<figure class="article-featured">
-
-    <img
-        src="${a.image}"
-        alt="${esc(a.image_alt || '')}"
-        width="1200"
-        height="675"
-    >
-
-</figure>
-`
-        : '';
 
 
     const backType =
@@ -1391,7 +1524,11 @@ ${pageHead(
 
     schema,
 
-    '../'
+    '../',
+
+    a.home_image
+        ? DOMAIN + a.home_image
+        : DOMAIN + '/assets/ai-globally-logo.png'
 )}
 
 ${header('../')}
@@ -1429,8 +1566,6 @@ ${header('../')}
 
             ${tagsHtml(a.tags)}
 
-
-            ${img}
 
 
             ${
@@ -1511,18 +1646,6 @@ function renderListingPage(
     href="${articleUrl(a)}"
 >
 
-    ${
-        a.image
-            ? `
-
-<img
-    src="${a.image}"
-    alt="${esc(a.image_alt || '')}"
-    loading="lazy"
->
-`
-            : ''
-    }
 
 
     <div>
@@ -1620,10 +1743,951 @@ function renderTagPage(
     );
 }
 
+/* =========================
+   SEARCH PAGE
+========================= */
+
+function renderSearchPage() {
+
+    return `
+${pageHead(
+    'Search | AI Globally',
+    'Search AI Globally articles, topics and companies.',
+    DOMAIN + '/search/',
+    'website',
+    '',
+    '../'
+)}
+
+${header('../')}
+
+
+<main class="container archive-page">
+
+    <a href="/" class="page-back">
+        ← BACK
+    </a>
+
+    <h1 class="archive-title">
+        Search AI Globally
+    </h1>
+
+    <label class="search-box search-page-box">
+
+        <span class="search-mark">
+            ⌕
+        </span>
+
+        <input
+            id="searchPageInput"
+            placeholder="Search articles, topics, companies..."
+            aria-label="Search AI Globally"
+            autocomplete="off"
+        >
+
+    </label>
+
+
+    <div
+        id="searchStatus"
+        class="search-status"
+    ></div>
+
+
+    <div
+        id="searchResults"
+        class="archive-list"
+    ></div>
+
+</main>
+
+
+<script>
+
+const searchInput =
+    document.getElementById(
+        'searchPageInput'
+    );
+
+const searchResults =
+    document.getElementById(
+        'searchResults'
+    );
+
+const searchStatus =
+    document.getElementById(
+        'searchStatus'
+    );
+
+let searchIndex = [];
+
+
+function normalizeSearch(value) {
+
+    return String(value || '')
+        .toLowerCase()
+        .trim();
+
+}
+
+
+function createSearchResult(article) {
+
+    const link =
+        document.createElement('a');
+
+    link.className =
+        'archive-story';
+
+    link.href =
+        article.url;
+
+
+    if (article.image) {
+
+        const img =
+            document.createElement('img');
+
+        img.src =
+            article.image;
+
+        img.alt =
+            article.image_alt || '';
+
+        img.loading =
+            'lazy';
+
+        link.appendChild(img);
+
+    }
+
+
+    const copy =
+        document.createElement('div');
+
+
+    const meta =
+        document.createElement('div');
+
+    meta.className =
+        'card-meta';
+
+    meta.textContent =
+        article.type +
+        ' · ' +
+        article.date_display;
+
+    copy.appendChild(meta);
+
+
+    const heading =
+        document.createElement('h2');
+
+    heading.textContent =
+        article.title;
+
+    copy.appendChild(heading);
+
+
+    if (article.description) {
+
+        const description =
+            document.createElement('p');
+
+        description.textContent =
+            article.description;
+
+        copy.appendChild(description);
+
+    }
+
+
+    link.appendChild(copy);
+
+    return link;
+
+}
+
+
+function runSearch() {
+
+    const query =
+        searchInput.value.trim();
+
+    const q =
+        normalizeSearch(query);
+
+
+    const currentUrl =
+        new URL(
+            window.location.href
+        );
+
+    if (query) {
+
+        currentUrl.searchParams.set(
+            'q',
+            query
+        );
+
+    } else {
+
+        currentUrl.searchParams.delete(
+            'q'
+        );
+
+    }
+
+    history.replaceState(
+        null,
+        '',
+        currentUrl
+    );
+
+
+    searchResults.innerHTML = '';
+
+
+    if (!q) {
+
+        searchStatus.textContent =
+            'Enter a search term.';
+
+        return;
+
+    }
+
+
+    const terms =
+        q
+            .split(/\\s+/)
+            .filter(Boolean);
+
+
+    const matches =
+        searchIndex.filter(
+            article => {
+
+                const haystack =
+                    normalizeSearch(
+                        [
+                            article.title,
+                            article.description,
+                            article.type,
+                            article.category,
+                            ...(article.tags || []),
+                            article.body
+                        ].join(' ')
+                    );
+
+                return terms.every(
+                    term =>
+                        haystack.includes(term)
+                );
+
+            }
+        );
+
+
+    searchStatus.textContent =
+        matches.length === 1
+            ? '1 result'
+            : matches.length + ' results';
+
+
+    if (!matches.length) {
+
+        const empty =
+            document.createElement('div');
+
+        empty.className =
+            'archive-empty';
+
+        empty.textContent =
+            'No articles found. Try a different search.';
+
+        searchResults.appendChild(
+            empty
+        );
+
+        return;
+
+    }
+
+
+    matches.forEach(
+        article => {
+
+            searchResults.appendChild(
+                createSearchResult(
+                    article
+                )
+            );
+
+        }
+    );
+
+}
+
+
+fetch('/search.json')
+
+    .then(
+        response => {
+
+            if (!response.ok) {
+
+                throw new Error(
+                    'Could not load search index.'
+                );
+
+            }
+
+            return response.json();
+
+        }
+    )
+
+    .then(
+        data => {
+
+            searchIndex =
+                Array.isArray(data)
+                    ? data
+                    : [];
+
+            const params =
+                new URLSearchParams(
+                    window.location.search
+                );
+
+            searchInput.value =
+                params.get('q') || '';
+
+            runSearch();
+
+        }
+    )
+
+    .catch(
+        () => {
+
+            searchStatus.textContent =
+                'Search is temporarily unavailable.';
+
+        }
+    );
+
+
+searchInput.addEventListener(
+    'keydown',
+    event => {
+
+        if (event.key === 'Enter') {
+            runSearch();
+        }
+
+    }
+);
+
+</script>
+
+
+</body>
+
+</html>
+`;
+}
+
+/* =========================
+   CONTACT PAGE
+========================= */
+
+function renderContactPage() {
+
+    return `
+${pageHead(
+    'Contact AI Globally',
+    'Contact AI Globally for news tips, press releases, corrections, partnerships and general enquiries.',
+    DOMAIN + '/contact.html',
+    'website',
+    '',
+    ''
+)}
+
+${header('')}
+
+
+<main class="container contact-page">
+
+    <a href="/" class="page-back">
+        ← BACK
+    </a>
+
+
+    <div class="contact-kicker">
+        CONTACT
+    </div>
+
+
+    <h1>
+        Contact AI Globally
+    </h1>
+
+
+    <p class="contact-intro">
+        Get in touch with AI Globally for news tips, press releases, corrections, partnerships or questions about our coverage.
+    </p>
+
+
+    <div class="contact-grid">
+
+
+        <div class="contact-item">
+
+            <h2>
+                News tips & press releases
+            </h2>
+
+            <p>
+                Have an AI development, announcement or story you think we should know about? Send us the details and any relevant supporting material.
+            </p>
+
+        </div>
+
+
+        <div class="contact-item">
+
+            <h2>
+                Corrections
+            </h2>
+
+            <p>
+                Spot an error in our coverage? Please send the article link and details of the correction.
+            </p>
+
+        </div>
+
+
+        <div class="contact-item">
+
+            <h2>
+                General & partnership enquiries
+            </h2>
+
+            <p>
+                For general questions, collaborations, partnerships or other enquiries, get in touch by email.
+            </p>
+
+        </div>
+
+
+    </div>
+
+
+    <div class="contact-email">
+
+        <span>
+            EMAIL
+        </span>
+
+        <a href="mailto:readaiglobally@gmail.com">
+            readaiglobally@gmail.com
+        </a>
+
+    </div>
+
+
+</main>
+
+
+<footer class="container site-footer">
+
+    <div>
+
+        <div class="footer-brand">
+            AI GLOBALLY
+        </div>
+
+        <div class="tagline">
+            News, analysis and context on AI, globally.
+        </div>
+
+    </div>
+
+
+    <div class="footer-links">
+
+        <a href="/about.html">
+            About
+        </a>
+
+        <a href="#">
+            Privacy
+        </a>
+
+        <a href="#">
+            Terms
+        </a>
+
+        <a href="/contact.html">
+            Contact
+        </a>
+
+        <span>
+            © 2026 AI Globally
+        </span>
+
+    </div>
+
+</footer>
+
+
+</body>
+
+</html>
+`;
+}
+
+/* =========================
+   PRIVACY PAGE
+========================= */
+
+function renderPrivacyPage() {
+
+    return `
+${pageHead(
+    'Privacy Policy | AI Globally',
+    'Privacy information for readers and visitors of AI Globally.',
+    DOMAIN + '/privacy.html',
+    'website',
+    '',
+    ''
+)}
+
+${header('')}
+
+
+<main class="container legal-page">
+
+    <a href="/" class="page-back">
+        ← BACK
+    </a>
+
+    <div class="legal-kicker">
+        PRIVACY
+    </div>
+
+    <h1>
+        Privacy Policy
+    </h1>
+
+    <p class="legal-updated">
+        Last updated: September 2026
+    </p>
+
+
+    <div class="legal-content">
+
+        <p>
+            AI Globally is an independent publication covering artificial intelligence news, analysis and explainers. This page explains how information may be handled when you visit the website or contact us.
+        </p>
+
+
+        <h2>
+            Information you provide
+        </h2>
+
+        <p>
+            AI Globally does not currently require readers to create accounts or provide personal information to access published content.
+        </p>
+
+        <p>
+            If you contact us by email, we may receive information you choose to provide, including your name, email address and the contents of your message.
+        </p>
+
+
+        <h2>
+            Technical information
+        </h2>
+
+        <p>
+            The website is hosted using third-party infrastructure. Hosting, security and network providers may process technical information such as IP addresses, browser information, device information, request data and security logs as part of operating and protecting the website.
+        </p>
+
+
+        <h2>
+            Cookies and analytics
+        </h2>
+
+        <p>
+            AI Globally does not currently use advertising or marketing cookies.
+        </p>
+
+        <p>
+            If analytics, advertising, newsletter tools or other services that involve additional data collection are introduced in the future, this policy may be updated to reflect those changes.
+        </p>
+
+
+        <h2>
+            External links
+        </h2>
+
+        <p>
+            Articles may contain links to external websites, including companies, government bodies, research organisations and other sources. AI Globally is not responsible for the privacy practices of external websites.
+        </p>
+
+
+        <h2>
+            How information may be used
+        </h2>
+
+        <p>
+            Information sent directly to AI Globally may be used to respond to enquiries, review news tips, consider press releases, handle correction requests or manage legitimate publication-related communications.
+        </p>
+
+
+        <h2>
+            Data sharing
+        </h2>
+
+        <p>
+            AI Globally does not sell personal information.
+        </p>
+
+        <p>
+            Information may be processed by service providers where necessary to operate, secure or maintain the website and publication services.
+        </p>
+
+
+        <h2>
+            Changes to this policy
+        </h2>
+
+        <p>
+            This Privacy Policy may be updated as AI Globally introduces new features, services or technologies.
+        </p>
+
+
+        <h2>
+            Contact
+        </h2>
+
+        <p>
+            Questions about this Privacy Policy can be sent to
+            <a href="mailto:readaiglobally@gmail.com">
+                readaiglobally@gmail.com
+            </a>.
+        </p>
+
+    </div>
+
+</main>
+
+
+<footer class="container site-footer">
+
+    <div>
+
+        <div class="footer-brand">
+            AI GLOBALLY
+        </div>
+
+        <div class="tagline">
+            News, analysis and context on AI, globally.
+        </div>
+
+    </div>
+
+
+    <div class="footer-links">
+
+        <a href="/about.html">
+            About
+        </a>
+
+        <a href="/privacy.html">
+            Privacy
+        </a>
+
+        <a href="/terms.html">
+            Terms
+        </a>
+
+        <a href="/contact.html">
+            Contact
+        </a>
+
+        <span>
+            © 2026 AI Globally
+        </span>
+
+    </div>
+
+</footer>
+
+
+</body>
+
+</html>
+`;
+}
+
+
+/* =========================
+   TERMS PAGE
+========================= */
+
+function renderTermsPage() {
+
+    return `
+${pageHead(
+    'Terms of Use | AI Globally',
+    'Terms governing the use of the AI Globally website and published content.',
+    DOMAIN + '/terms.html',
+    'website',
+    '',
+    ''
+)}
+
+${header('')}
+
+
+<main class="container legal-page">
+
+    <a href="/" class="page-back">
+        ← BACK
+    </a>
+
+    <div class="legal-kicker">
+        TERMS
+    </div>
+
+    <h1>
+        Terms of Use
+    </h1>
+
+    <p class="legal-updated">
+        Last updated: September 2026
+    </p>
+
+
+    <div class="legal-content">
+
+        <p>
+            These Terms of Use apply to your use of the AI Globally website and its published content.
+        </p>
+
+
+        <h2>
+            Editorial content
+        </h2>
+
+        <p>
+            AI Globally publishes news, analysis and explanatory content about artificial intelligence, technology, business, policy and related subjects.
+        </p>
+
+        <p>
+            We aim to publish accurate and useful information, but published material may contain errors, omissions or information that later becomes outdated.
+        </p>
+
+
+        <h2>
+            No professional advice
+        </h2>
+
+        <p>
+            Content published by AI Globally is provided for informational and editorial purposes only. It should not be treated as legal, financial, investment, medical or other professional advice.
+        </p>
+
+
+        <h2>
+            Corrections and updates
+        </h2>
+
+        <p>
+            AI Globally may correct, update, clarify or remove published content when necessary.
+        </p>
+
+        <p>
+            Readers who identify a potential error can contact us at
+            <a href="mailto:readaiglobally@gmail.com">
+                readaiglobally@gmail.com
+            </a>.
+        </p>
+
+
+        <h2>
+            Intellectual property
+        </h2>
+
+        <p>
+            Unless otherwise stated, original text, branding, design and other original material published by AI Globally are protected by applicable intellectual property laws.
+        </p>
+
+        <p>
+            Limited quotation or linking for commentary, reporting, research or other lawful purposes is permitted where appropriate attribution is provided. Republishing substantial portions of AI Globally content without permission is not permitted.
+        </p>
+
+
+        <h2>
+            Third-party material
+        </h2>
+
+        <p>
+            AI Globally may reference or link to third-party websites, documents, research, announcements and other materials. Ownership of third-party material remains with its respective owners.
+        </p>
+
+        <p>
+            Links to third-party websites do not necessarily constitute endorsement, and AI Globally is not responsible for the availability, accuracy or policies of external websites.
+        </p>
+
+
+        <h2>
+            Website availability
+        </h2>
+
+        <p>
+            We may modify, suspend or discontinue parts of the website without notice. We do not guarantee uninterrupted availability of the website or any particular feature.
+        </p>
+
+
+        <h2>
+            Limitation of liability
+        </h2>
+
+        <p>
+            To the extent permitted by applicable law, AI Globally is not responsible for losses or damages arising from reliance on information published on the website or from the use of third-party websites linked from our content.
+        </p>
+
+
+        <h2>
+            Changes to these terms
+        </h2>
+
+        <p>
+            These Terms may be updated as AI Globally develops new features, products or services.
+        </p>
+
+
+        <h2>
+            Contact
+        </h2>
+
+        <p>
+            Questions about these Terms can be sent to
+            <a href="mailto:readaiglobally@gmail.com">
+                readaiglobally@gmail.com
+            </a>.
+        </p>
+
+    </div>
+
+</main>
+
+
+<footer class="container site-footer">
+
+    <div>
+
+        <div class="footer-brand">
+            AI GLOBALLY
+        </div>
+
+        <div class="tagline">
+            News, analysis and context on AI, globally.
+        </div>
+
+    </div>
+
+
+    <div class="footer-links">
+
+        <a href="/about.html">
+            About
+        </a>
+
+        <a href="/privacy.html">
+            Privacy
+        </a>
+
+        <a href="/terms.html">
+            Terms
+        </a>
+
+        <a href="/contact.html">
+            Contact
+        </a>
+
+        <span>
+            © 2026 AI Globally
+        </span>
+
+    </div>
+
+</footer>
+
+
+</body>
+
+</html>
+`;
+}
 
 /* =========================
    ABOUT PAGE
 ========================= */
+
+/* =========================
+   404 PAGE
+========================= */
+
+function render404Page() {
+
+    return `
+${pageHead(
+    'Page Not Found | AI Globally',
+    'The page you are looking for could not be found.',
+    DOMAIN + '/404.html',
+    'website',
+    '',
+    ''
+)}
+
+${header('')}
+
+<main class="container error-page">
+
+    <div class="error-code">
+        404
+    </div>
+
+    <h1>
+        Page not found
+    </h1>
+
+    <p>
+        The page you’re looking for may have moved, changed or no longer exists.
+    </p>
+
+    <div class="error-actions">
+
+        <a href="/">
+            ← BACK TO HOME
+        </a>
+
+        <a href="/news/">
+            LATEST NEWS →
+        </a>
+
+    </div>
+
+</main>
+
+</body>
+</html>
+`;
+}
 
 function renderAboutPage() {
 
@@ -1858,6 +2922,39 @@ function build() {
         renderAboutPage()
     );
 
+    /* CONTACT */
+
+    fs.writeFileSync(
+        path.join(
+            OUT,
+            'contact.html'
+        ),
+
+        renderContactPage()
+    );
+
+        /* PRIVACY */
+
+    fs.writeFileSync(
+        path.join(
+            OUT,
+            'privacy.html'
+        ),
+
+        renderPrivacyPage()
+    );
+
+
+    /* TERMS */
+
+    fs.writeFileSync(
+        path.join(
+            OUT,
+            'terms.html'
+        ),
+
+        renderTermsPage()
+    );
 
     /* HOMEPAGE */
 
@@ -1872,6 +2969,87 @@ function build() {
         )
     );
 
+        /* 404 */
+
+    fs.writeFileSync(
+        path.join(
+            OUT,
+            '404.html'
+        ),
+
+        render404Page()
+    );
+
+    /* =========================
+       SEARCH
+    ========================= */
+
+    const searchIndex =
+        articles.map(
+            a => ({
+
+                title:
+                    a.title || '',
+
+                description:
+                    a.meta_description || '',
+
+                type:
+                    a.type || '',
+
+                category:
+                    a.category || '',
+
+                tags:
+                    Array.isArray(a.tags)
+                        ? a.tags.map(
+                            tag =>
+                                String(tag).trim()
+                        )
+                        : [],
+
+                body:
+                    a.body || '',
+
+                image:
+                    a.image || '',
+
+                image_alt:
+                    a.image_alt || '',
+
+                date:
+                    a.date || '',
+
+                date_display:
+                    a.date
+                        ? fmtShort(a.date)
+                        : '',
+
+                url:
+                    articleUrl(a)
+
+            })
+        );
+
+
+    fs.writeFileSync(
+        path.join(
+            OUT,
+            'search.json'
+        ),
+
+        JSON.stringify(
+            searchIndex,
+            null,
+            2
+        )
+    );
+
+
+    writeDirPage(
+        'search',
+        renderSearchPage()
+    );
 
     /* ARTICLES */
 
@@ -2072,6 +3250,12 @@ function build() {
         DOMAIN + '/',
 
         DOMAIN + '/about.html',
+
+        DOMAIN + '/contact.html',
+
+DOMAIN + '/privacy.html',
+
+DOMAIN + '/terms.html',
 
         DOMAIN + '/news/',
 
