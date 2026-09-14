@@ -2558,3 +2558,227 @@ img {
         gap: 18px;
     }
 }
+/* =========================================================
+   AI GLOBALLY — FINAL TEXT-ONLY LISTING + SEARCH OVERRIDES
+   ========================================================= */
+
+
+/* =========================
+   ARCHIVE / LISTING PAGES
+   News, Insights, Explainers,
+   Categories and Tags
+========================= */
+
+.archive-list {
+    width: 100%;
+}
+
+.archive-story {
+    display: block;
+    width: 100%;
+    max-width: none;
+
+    padding: 28px 0;
+
+    border-bottom: 1px solid var(--line);
+}
+
+
+/* Never display legacy featured images
+   on archive/listing pages */
+
+.archive-story > img,
+.archive-story-image,
+.archive-story figure {
+    display: none !important;
+}
+
+
+/* Text should use the available page width */
+
+.archive-story-content,
+.archive-story > div {
+    width: 100%;
+    max-width: none;
+}
+
+
+/* Metadata */
+
+.archive-story .meta {
+    margin-bottom: 8px;
+}
+
+
+/* Headlines */
+
+.archive-story h2 {
+    width: 100%;
+    max-width: 900px;
+
+    margin: 0 0 10px;
+
+    line-height: 1.12;
+}
+
+
+/* Descriptions */
+
+.archive-story p {
+    width: 100%;
+    max-width: 780px;
+
+    margin: 0;
+
+    line-height: 1.5;
+}
+
+
+/* Links must not retain old card sizing */
+
+.archive-story > a,
+.archive-story h2 a {
+    width: auto;
+    max-width: none;
+}
+
+
+/* =========================
+   SEARCH RESULTS
+========================= */
+
+.search-results {
+    width: 100%;
+}
+
+
+/* Force every search result into
+   a clean text-only layout */
+
+.search-result,
+.search-result-item,
+.search-story {
+    display: block !important;
+
+    width: 100% !important;
+    max-width: none !important;
+
+    grid-template-columns: none !important;
+
+    padding: 26px 0;
+
+    border-bottom: 1px solid var(--line);
+}
+
+
+/* Hide old article/featured images
+   if legacy articles still contain image:
+   in their frontmatter */
+
+.search-result img,
+.search-result-item img,
+.search-story img,
+.search-results article img {
+    display: none !important;
+}
+
+
+/* Remove image wrappers if present */
+
+.search-result figure,
+.search-result-item figure,
+.search-story figure {
+    display: none !important;
+}
+
+
+/* Search text */
+
+.search-result > div,
+.search-result-item > div,
+.search-story > div {
+    width: 100% !important;
+    max-width: none !important;
+}
+
+
+.search-result h2,
+.search-result-item h2,
+.search-story h2,
+.search-results article h2 {
+    width: 100%;
+    max-width: 900px;
+
+    margin: 0 0 10px;
+
+    line-height: 1.12;
+}
+
+
+.search-result p,
+.search-result-item p,
+.search-story p,
+.search-results article p {
+    width: 100%;
+    max-width: 780px;
+
+    margin: 0;
+
+    line-height: 1.5;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 900px) {
+
+    .archive-story {
+        display: block !important;
+
+        width: 100% !important;
+
+        padding: 22px 0;
+    }
+
+
+    .archive-story h2 {
+        width: 100%;
+        max-width: none;
+    }
+
+
+    .archive-story p {
+        width: 100%;
+        max-width: none;
+    }
+
+
+    .search-result,
+    .search-result-item,
+    .search-story {
+        display: block !important;
+
+        width: 100% !important;
+
+        padding: 22px 0;
+    }
+
+
+    .search-result h2,
+    .search-result-item h2,
+    .search-story h2,
+    .search-results article h2 {
+        max-width: none;
+    }
+
+
+    .search-result p,
+    .search-result-item p,
+    .search-story p,
+    .search-results article p {
+        max-width: none;
+    }
+
+}
