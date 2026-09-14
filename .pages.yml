@@ -82,14 +82,9 @@ content:
 
       - name: tags
         label: Tags
-        type: reference
-        description: Select existing tags. Create new tags from the Tags section when needed.
-        options:
-          collection: tags
-          multiple: true
-          search: name
-          value: "{primary}"
-          label: "{primary}"
+        type: string
+        list: true
+        description: Add tags such as OpenAI, AI Safety, ChatGPT, AI Agents
 
       - name: date
         label: Publish Date
@@ -102,16 +97,16 @@ content:
         description: Use 24-hour format, for example 14:30
 
       - name: home_image
-  label: Popular News Image
-  type: image
-  options:
-    media: article_images
-  description: Used only for the Popular News card on the homepage. It will not appear at the top of the article.
+        label: Popular News Image
+        type: image
+        options:
+          media: article_images
+        description: Used only for the Popular News card on the homepage. It will not appear at the top of the article.
 
-- name: home_image_alt
-  label: Popular News Image Alt Text
-  type: string
-  description: Describe the image for accessibility and search engines.
+      - name: home_image_alt
+        label: Popular News Image Alt Text
+        type: string
+        description: Describe the Popular News image for accessibility and search engines.
 
       - name: featured_home
         label: Show in Popular News
@@ -152,25 +147,3 @@ content:
           format: markdown
           media: article_images
           switcher: true
-
-
-  - name: tags
-    label: Tags
-    type: collection
-    path: content/tags
-    format: yaml
-    filename: "{primary}.yml"
-
-    view:
-      primary: name
-      fields:
-        - name
-      sort: name
-      order: asc
-
-    fields:
-      - name: name
-        label: Tag Name
-        type: string
-        required: true
-        description: Use one consistent name, for example AI Safety, OpenAI or Anthropic.
