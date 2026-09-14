@@ -82,9 +82,173 @@ content:
 
       - name: tags
         label: Tags
-        type: string
-        list: true
-        description: Add tags such as OpenAI, AI Safety, ChatGPT, AI Agents
+        type: select
+        options:
+          multiple: true
+          values:
+
+            # Companies and organisations
+            - OpenAI
+            - Anthropic
+            - Google
+            - Google DeepMind
+            - Microsoft
+            - Meta
+            - xAI
+            - Amazon
+            - AWS
+            - Apple
+            - Nvidia
+            - AMD
+            - Intel
+            - Oracle
+            - IBM
+            - Salesforce
+            - Adobe
+            - Mistral AI
+            - Cohere
+            - Perplexity
+            - Hugging Face
+            - Stability AI
+            - Scale AI
+            - Databricks
+            - Snowflake
+            - Palantir
+            - SoftBank
+            - Alibaba
+            - Tencent
+            - Baidu
+            - ByteDance
+            - Wonderful
+
+            # Models and platforms
+            - ChatGPT
+            - Claude
+            - Gemini
+            - Grok
+            - Llama
+            - Copilot
+            - AI Models
+            - Large Language Models
+            - Foundation Models
+            - Reasoning Models
+            - Multimodal AI
+            - Small Language Models
+            - Open Source AI
+            - Open Weight Models
+            - Model Training
+            - Model Inference
+            - AI APIs
+
+            # Agents and applications
+            - AI Agents
+            - Agentic AI
+            - AI Assistants
+            - AI Coding
+            - AI Search
+            - AI Browsers
+            - AI Video
+            - AI Image Generation
+            - AI Voice
+            - Robotics
+            - Autonomous Systems
+
+            # Enterprise AI
+            - Enterprise AI
+            - AI Adoption
+            - AI Deployment
+            - AI Automation
+            - AI Productivity
+            - AI Workflows
+            - AI Data
+            - AI Infrastructure
+            - Cloud AI
+            - Edge AI
+
+            # Chips, compute and infrastructure
+            - AI Chips
+            - GPUs
+            - Semiconductors
+            - AI Compute
+            - Data Centers
+            - Cloud Computing
+            - AI Networking
+
+            # Safety, governance and policy
+            - AI Safety
+            - AI Regulation
+            - AI Policy
+            - AI Governance
+            - AI Ethics
+            - Responsible AI
+            - AI Alignment
+            - AI Risk
+            - AI Security
+            - AI Transparency
+            - AI Copyright
+            - AI Privacy
+            - AI Standards
+            - AI Auditing
+            - AI Evaluation
+            - AI Benchmarking
+
+            # Government and geopolitics
+            - European Union
+            - United States
+            - China
+            - India
+            - United Kingdom
+            - AI Act
+            - Antitrust
+            - Export Controls
+            - Government AI
+            - Public Sector AI
+
+            # Business and investment
+            - AI Startups
+            - AI Funding
+            - Venture Capital
+            - AI Investment
+            - Mergers and Acquisitions
+            - IPO
+            - Partnerships
+            - AI Revenue
+            - AI Spending
+            - AI Market
+
+            # Work and society
+            - Future of Work
+            - AI Jobs
+            - AI Skills
+            - AI Education
+            - AI Research
+            - AI Science
+            - Healthcare AI
+            - Financial AI
+            - Legal AI
+            - Media and AI
+            - Advertising AI
+            - Cybersecurity
+            - Deepfakes
+            - Disinformation
+
+            # Energy and sustainability
+            - AI Energy
+            - Data Center Energy
+            - Nuclear Energy
+            - Renewable Energy
+            - AI Sustainability
+
+            # Development and event types
+            - Model Release
+            - Product Launch
+            - Research
+            - Benchmark
+            - Funding Round
+            - Partnership
+            - Acquisition
+            - Leadership
+            - Executive Changes
 
       - name: date
         label: Publish Date
