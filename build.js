@@ -3328,6 +3328,12 @@ Sitemap: ${DOMAIN}/sitemap.xml
 `
     );
 
+    /* GOOGLE SEARCH CONSOLE VERIFICATION */
+
+    fs.copyFileSync(
+        path.join(ROOT, 'google3634daa9c093b941.html'),
+        path.join(OUT, 'google3634daa9c093b941.html')
+    );
 
     console.log(
         `Built ${articles.length} articles into dist/`
