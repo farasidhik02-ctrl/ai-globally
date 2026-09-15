@@ -17,6 +17,9 @@ key_point_1: Firmus seeks up to $5B in an Australian IPO, targeting late October
 key_point_2: Would be Australia's 2nd-largest IPO ever, behind Telstra in 1997.
 key_point_3: Follows a $2B raise in August that valued Firmus above $10.5B.
 seo_title: Firmus Technologies Targets $5 Billion Australian IPO in October
+meta_description: Firmus Technologies, an Australian AI infrastructure company,
+  is seeking to raise up to $5 billion in an initial public offering, according
+  to people familiar with the matter.
 ---
 Firmus Technologies, an Australian AI infrastructure company, is seeking to raise up to $5 billion in an initial public offering, according to people familiar with the matter. The company is targeting a launch in October, with a debut on the Australian Securities Exchange possible as early as late October. A Firmus spokesperson declined to comment on the plans.
 
