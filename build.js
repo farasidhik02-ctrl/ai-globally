@@ -3245,50 +3245,54 @@ function build() {
        SITEMAP
     ========================= */
 
-    const urls = [
+const urls = [
 
-        DOMAIN + '/',
+    { loc: DOMAIN + '/' },
 
-        DOMAIN + '/about.html',
+    { loc: DOMAIN + '/about.html' },
 
-        DOMAIN + '/contact.html',
+    { loc: DOMAIN + '/contact.html' },
 
-DOMAIN + '/privacy.html',
+    { loc: DOMAIN + '/privacy.html' },
 
-DOMAIN + '/terms.html',
+    { loc: DOMAIN + '/terms.html' },
 
-        DOMAIN + '/news/',
+    { loc: DOMAIN + '/news/' },
 
-        DOMAIN + '/insights/',
+    { loc: DOMAIN + '/insights/' },
 
-        DOMAIN + '/explainers/',
+    { loc: DOMAIN + '/explainers/' },
+
+    ...categories.map(
+        category => ({
+            loc: DOMAIN + categoryUrl(category)
+        })
+    ),
+
+    ...articles.map(
+        a => ({
+            loc: DOMAIN + articleUrl(a),
+            lastmod: a.date
+        })
+    ),
+
+    ...Array
+        .from(tagMap.keys())
+        .map(
+            tag => ({
+                loc: DOMAIN + tagUrl(tag)
+            })
+        )
+
+];
 
 
-        ...categories.map(
-            category =>
-                DOMAIN +
-                categoryUrl(category)
-        ),
-
-
-        ...articles.map(
-            a =>
-                DOMAIN +
-                articleUrl(a)
-        ),
-
-
-        ...Array
-            .from(
-                tagMap.keys()
-            )
-            .map(
-                tag =>
-                    DOMAIN +
-                    tagUrl(tag)
-            )
-
-    ];
+/* Remove duplicate URLs */
+const uniqueUrls = Array.from(
+    new Map(
+        urls.map(item => [item.loc, item])
+    ).values()
+);
 
 
     fs.writeFileSync(
@@ -3301,10 +3305,12 @@ DOMAIN + '/terms.html',
 
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
-${urls
+${uniqueUrls
     .map(
-        u =>
-            `  <url><loc>${u}</loc></url>`
+        item => `  <url>
+    <loc>${item.loc}</loc>${item.lastmod ? `
+    <lastmod>${item.lastmod}</lastmod>` : ''}
+  </url>`
     )
     .join('\n')}
 
