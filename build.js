@@ -3249,13 +3249,13 @@ const urls = [
 
     { loc: DOMAIN + '/' },
 
-    { loc: DOMAIN + '/about.html' },
+    { loc: DOMAIN + '/about' },
 
-    { loc: DOMAIN + '/contact.html' },
+    { loc: DOMAIN + '/contact' },
 
-    { loc: DOMAIN + '/privacy.html' },
+    { loc: DOMAIN + '/privacy' },
 
-    { loc: DOMAIN + '/terms.html' },
+    { loc: DOMAIN + '/terms' },
 
     { loc: DOMAIN + '/news/' },
 
@@ -3269,11 +3269,11 @@ const urls = [
         })
     ),
 
-    ...articles.map(
-        a => ({
-            loc: DOMAIN + articleUrl(a),
-            lastmod: a.date
-        })
+   ...articles.map(
+    a => ({
+        loc: DOMAIN + articleUrl(a).replace(/\.html$/, ''),
+        lastmod: a.date
+    })
     ),
 
     ...Array
