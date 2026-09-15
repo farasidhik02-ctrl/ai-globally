@@ -22,7 +22,9 @@ meta_description: OpenAI CEO Sam Altman has ruled out an IPO in 2026, citing AI
 ---
 OpenAI will not go public in 2026, CEO Sam Altman said, citing AI safety and alignment work and the need for cooperation between AI companies and governments.
 
-Altman said OpenAI does not feel pressure to enter the public markets and described the current period as an “ill-advised moment” for an IPO because of safety concerns around AI. He ruled out a listing this year but did not provide a new IPO date.
+Altman said OpenAI does not feel pressure to enter the public markets and described the current period as an “ill-advised moment” for an IPO because of safety concerns around AI. He ruled out a listing this year but did not provide a new IPO date. 
+
+The discussion comes amid a broader industry debate over AI safety, with [Anthropic CEO Dario Amodei also calling for slower AI development and independent safety checks.](https://ai-globally.pages.dev/articles/2026-09-12-anthropic-ceo-dario-amodei-calls-for-slower-ai-development-and-third-party-safety-checks)
 
 ## Why OpenAI is not going public in 2026
 
@@ -34,7 +36,7 @@ He also identified cooperation between governments and the AI industry as a prio
 
 Altman connected OpenAI’s decision to remain private with the choices the company may need to make around advanced AI.
 
-He said AI companies have a responsibility to prevent profit incentives or individual egos from interfering with efforts to manage serious AI risks. Altman also said OpenAI needs to address safety and alignment requirements and determine how AI companies and governments should work together. For now, OpenAI will do that work as a private company.
+He said AI companies have a responsibility to prevent profit incentives or individual egos from interfering with efforts to manage serious AI risks. Altman also said OpenAI needs to address [AI safety and alignment requirements](https://ai-globally.pages.dev/articles/openai-slowing-ai-development) and determine how AI companies and governments should work together. For now, OpenAI will do that work as a private company.
 
 ## Altman says serious AI extinction risks would be unacceptable
 
