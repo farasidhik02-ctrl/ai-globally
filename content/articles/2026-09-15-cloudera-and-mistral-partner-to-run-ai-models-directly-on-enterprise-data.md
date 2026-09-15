@@ -11,7 +11,7 @@ tags:
   - AI Data
   - Cloud AI
 date: 2026-09-15
-time: 8:10
+time: 08:10
 featured_home: "false"
 key_point_1: Cloudera will integrate Mistral's AI models and tools with its
   hybrid data and AI platform, supporting deployments across cloud, on-premises,
